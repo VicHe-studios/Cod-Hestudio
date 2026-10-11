@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cod-Hestudio — Editor de código en tu navegador</title>
+  <meta name="description" content="Editor de código que vive en tu navegador. Plugins, temas propios y exportación a GitHub. Sin instalar nada.">
+  <link rel="icon" type="image/svg+xml" href="editor/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    // Mismo modo que el editor (clave cod-hestudio-theme). Por defecto, claro.
+    (function () {
+      try {
+        if (localStorage.getItem('cod-hestudio-theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div class="c-page">
+
+  <!-- HEADER -->
+  <header class="c-header">
+    <div class="c-brand">
+      <span class="c-brand-mark">
+        <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="1 1 30 30" aria-hidden="true">
+          <rect x="3.2" y="4.6" width="25.6" height="17" rx="2.6" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+          <path d="M16 21.6 V25.4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M10.8 26.6 H21.2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+          <g fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="butt">
+            <path d="M9.8 8.4 V17.6 M14.2 8.4 V17.6 M9.8 13 H14.2"/>
+            <path d="M22.8 9.5 H18.4 V16.5 H22.8 M18.4 13 H21.8"/>
+          </g>
+        </svg>
+      </span>
+      <div class="c-brand-text">
+        <span class="c-brand-name">Cod-Hestudio</span>
+        <span class="c-brand-tag">Editor de código</span>
+      </div>
+    </div>
+
+    <span class="c-header-badge">
+      <span class="c-badge-dot"></span>
+      Chrome · Edge
+    </span>
+  </header>
+
+  <!-- HERO -->
+  <section class="c-hero">
+    <span class="c-hero-pill">
+      <i data-lucide="sparkles"></i>
+      Sin instalar nada · Sin cuentas
+    </span>
+
+    <h1 class="c-hero-title">
+      Tu editor de código,<br>
+      <span class="c-hero-accent">en el navegador y a tu medida.</span>
+    </h1>
+
+    <p class="c-hero-sub">
+      Abre carpetas de tu PC, edita, previsualiza y exporta tus proyectos.
+      Activa solo los plugins que uses y cambia los colores a tu gusto.
+    </p>
+
+    <a class="c-hero-cta" href="editor/index.html">
+      <i data-lucide="code-2"></i>
+      Abrir el editor
+    </a>
+  </section>
+
+  <!-- TARJETAS (botones) -->
+  <section class="c-options" aria-label="Accesos principales">
+    <a class="c-card c-card--link" href="editor/index.html">
+      <div class="c-card-icon c-card-icon--accent">
+        <i data-lucide="code-2"></i>
+      </div>
+      <div class="c-card-body">
+        <h2 class="c-card-title">Abrir Editor</h2>
+        <p class="c-card-desc">Trabaja con tus carpetas, plugins y temas. Todo corre en tu navegador, sin instalar nada.</p>
+      </div>
+      <span class="c-card-arrow"><i data-lucide="arrow-right"></i></span>
+    </a>
+
+    <a class="c-card c-card--link" href="sobre/index.html">
+      <div class="c-card-icon c-card-icon--green">
+        <i data-lucide="info"></i>
+      </div>
+      <div class="c-card-body">
+        <h2 class="c-card-title">Sobre Nosotros</h2>
+        <p class="c-card-desc">La razón de ser del proyecto, cómo funciona, el contacto y los créditos de terceros.</p>
+      </div>
+      <span class="c-card-arrow"><i data-lucide="arrow-right"></i></span>
+    </a>
+  </section>
+
+  <!-- PRINCIPIOS -->
+  <section class="c-values" aria-label="Nuestros principios">
+    <div class="c-value">
+      <i data-lucide="shield-check"></i>
+      <span>Tu proyecto vive en tu navegador.</span>
+    </div>
+    <div class="c-value">
+      <i data-lucide="unlock"></i>
+      <span>Sin cuentas ni suscripciones.</span>
+    </div>
+    <div class="c-value">
+      <i data-lucide="code"></i>
+      <span>Código limpio, sin dependencias ocultas.</span>
+    </div>
+    <div class="c-value">
+      <i data-lucide="heart-handshake"></i>
+      <span>El código es tuyo, siempre.</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="c-footer">
+    <span>© <span id="cYear"></span> Cod-Hestudio</span>
+    <div class="c-footer-links">
+      <a href="editor/index.html">Editor</a>
+      <a href="sobre/index.html">Sobre nosotros</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Cod-Hestudio — Editor de código en tu navegador</title>
+  <meta name="description" content="Qué es Cod-Hestudio, por qué existe, cómo funciona, sus créditos y cómo contactarnos.">
+  <link rel="icon" type="image/svg+xml" href="../editor/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    // Mismo modo que el editor (clave cod-hestudio-theme). Por defecto, claro.
+    (function () {
+      try {
+        if (localStorage.getItem('cod-hestudio-theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div class="a-page">
+
+  <!-- HEADER -->
+  <header class="a-header">
+    <a class="a-back" href="../index.html">
+      <i data-lucide="arrow-left"></i>
+      <span>Volver al inicio</span>
+    </a>
+    <div class="a-brand">
+      <span class="a-brand-mark">
+        <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="1 1 30 30" aria-hidden="true" style="display:block">
+            <rect x="3.2" y="4.6" width="25.6" height="17" rx="2.6" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+            <path d="M16 21.6 V25.4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M10.8 26.6 H21.2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <g fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="butt">
+              <path d="M9.8 8.4 V17.6 M14.2 8.4 V17.6 M9.8 13 H14.2"/>
+              <path d="M22.8 9.5 H18.4 V16.5 H22.8 M18.4 13 H21.8"/>
+            </g>
+          </svg>
+      </span>
+      <span class="a-brand-name">Sobre nosotros</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="a-hero">
+    <span class="a-hero-pill">
+      <i data-lucide="heart-handshake"></i>
+      Hecho con honestidad
+    </span>
+    <h1 class="a-hero-title">Sobre <span class="a-hero-accent">Cod-Hestudio</span></h1>
+    <p class="a-hero-sub">
+      Un editor de código que vive en tu navegador, con plugins que activas solo si los necesitas.
+      Aquí contamos qué es, por qué existe, cómo funciona y quién está detrás.
+    </p>
+  </section>
+
+  <!-- 1. QUÉ ES -->
+  <section class="a-section">
+    <span class="a-eyebrow">Qué es</span>
+    <h2>Un editor ligero, sin instalación y a tu medida</h2>
+    <p>
+      Cod-Hestudio es un <strong>editor de código</strong> que se abre en el navegador. Trabajas
+      directamente sobre las carpetas de tu computadora, con un editor del mismo tipo que usa
+      Visual Studio Code por dentro (Monaco), y con un sistema de <strong>plugins</strong> que
+      añaden funciones: búsqueda, notas, vista previa, exportación a ZIP, sincronización con GitHub
+      y más.
+    </p>
+    <p>
+      Nada se instala. Nada se sube a internet, salvo que decidas exportar a GitHub. No hay cuentas
+      ni suscripciones.
+    </p>
+  </section>
+
+  <!-- 2. POR QUÉ EXISTE -->
+  <section class="a-section">
+    <span class="a-eyebrow">Por qué existe</span>
+    <h2>Un editor que crece sin hincharse</h2>
+    <p>
+      Cod-Hestudio nació como una herramienta personal para escribir y revisar proyectos web sin
+      depender de instalaciones pesadas. Con el tiempo se volvió un laboratorio: cada función nueva
+      se construye como plugin, para que el núcleo siga siendo pequeño y que cada quien active solo
+      lo que usa.
+    </p>
+    <p>
+      La idea es sencilla: un editor que se adapta a cómo trabajas, y no al revés.
+    </p>
+  </section>
+
+  <!-- 3. CÓMO FUNCIONA -->
+  <section class="a-section">
+    <span class="a-eyebrow">Cómo funciona</span>
+    <h2>Tres ideas que sostienen el proyecto</h2>
+
+    <div class="a-grid">
+      <div class="a-card">
+        <span class="a-card-icon a-card-icon--accent"><i data-lucide="hard-drive"></i></span>
+        <h3>Tus archivos, en tu PC</h3>
+        <p>Abres carpetas locales y editas directamente. El editor lee y escribe en tu disco, sin copias intermedias.</p>
+      </div>
+      <div class="a-card">
+        <span class="a-card-icon a-card-icon--green"><i data-lucide="puzzle"></i></span>
+        <h3>Plugins a tu medida</h3>
+        <p>Activas y desactivas funciones desde la tienda. Lo que no usas no ocupa lugar en la barra ni en la memoria.</p>
+      </div>
+      <div class="a-card">
+        <span class="a-card-icon a-card-icon--blue"><i data-lucide="shield-check"></i></span>
+        <h3>Sin cuentas</h3>
+        <p>No pedimos correo ni contraseña. Tus proyectos y tu configuración se quedan en tu navegador.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. REQUISITOS -->
+  <section class="a-section">
+    <span class="a-eyebrow">Requisitos</span>
+    <h2>Dónde funciona</h2>
+    <p>
+      Cod-Hestudio usa la <strong>File System Access API</strong> para leer y escribir carpetas de tu
+      computadora. Esa API está disponible en <strong>Google Chrome</strong> y <strong>Microsoft Edge</strong>.
+      En Firefox y Safari algunas funciones no van a estar disponibles.
+    </p>
+  </section>
+
+  <!-- 5. CONTACTO -->
+  <section class="a-section">
+    <span class="a-eyebrow">Contacto</span>
+    <h2>¿Ideas, errores o dudas?</h2>
+    <p>
+      Si encuentras un error, tienes una sugerencia o quieres un plugin nuevo, escríbenos. Cuanto más
+      feedback recibamos, mejor será la siguiente versión.
+    </p>
+    <p class="a-note">
+      <strong>Email de contacto:</strong>
+      <a href="mailto:VicHeSuport@gmail.com">VicHeSuport@gmail.com</a>
+    </p>
+  </section>
+
+  <!-- 6. CRÉDITOS -->
+  <section class="a-section" id="creditos">
+    <span class="a-eyebrow">Créditos</span>
+    <h2>Tecnologías y servicios de terceros</h2>
+    <p>
+      Cod-Hestudio no existiría sin el trabajo de otras personas. Estos son los proyectos en los que
+      se apoya, con su licencia y para qué los usamos.
+    </p>
+
+    <div class="a-table-wrap">
+      <table class="a-table">
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Uso</th>
+            <th>Licencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Monaco Editor</strong></td>
+            <td>Motor del editor de código (el mismo de VS Code)</td>
+            <td>MIT</td>
+          </tr>
+          <tr>
+            <td><strong>Lucide</strong></td>
+            <td>Iconos de toda la interfaz</td>
+            <td>ISC</td>
+          </tr>
+          <tr>
+            <td><strong>JSZip</strong></td>
+            <td>Crear los archivos .zip de los proyectos</td>
+            <td>MIT / GPLv3</td>
+          </tr>
+          <tr>
+            <td><strong>marked</strong></td>
+            <td>Vista previa de archivos Markdown</td>
+            <td>MIT</td>
+          </tr>
+          <tr>
+            <td><strong>DOMPurify</strong></td>
+            <td>Limpieza de HTML en la vista previa de Markdown</td>
+            <td>Apache-2.0 / MPL-2.0</td>
+          </tr>
+          <tr>
+            <td><strong>Inter</strong> y <strong>JetBrains Mono</strong></td>
+            <td>Tipografías de la interfaz y del código</td>
+            <td>SIL Open Font License 1.1</td>
+          </tr>
+          <tr>
+            <td><strong>GitHub REST API</strong></td>
+            <td>Exportar proyectos a un repositorio de GitHub</td>
+            <td>Servicio gratuito</td>
+          </tr>
+          <tr>
+            <td><strong>APIs del navegador</strong></td>
+            <td>File System Access (carpetas) y Web Audio (sonidos ambientales)</td>
+            <td>Estándares abiertos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="a-note">
+      Cada librería conserva su licencia original. Si usas Cod-Hestudio para un proyecto comercial,
+      revisa las licencias de la tabla.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="a-footer">
+    <div class="a-footer-inner">
+      <div class="a-footer-left">
+        <span class="a-footer-brand">
+          <span class="a-footer-mark">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="1 1 30 30" aria-hidden="true" style="display:block">
+            <rect x="3.2" y="4.6" width="25.6" height="17" rx="2.6" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+            <path d="M16 21.6 V25.4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M10.8 26.6 H21.2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <g fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="butt">
+              <path d="M9.8 8.4 V17.6 M14.2 8.4 V17.6 M9.8 13 H14.2"/>
+              <path d="M22.8 9.5 H18.4 V16.5 H22.8 M18.4 13 H21.8"/>
+            </g>
+          </svg>
+        </span>
+          Cod-Hestudio
+        </span>
+        <span class="a-footer-version">Editor de código · Alpha</span>
+      </div>
+      <div class="a-footer-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../editor/index.html">Abrir editor</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  function refreshIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      try { window.lucide.createIcons(); } catch (_) {}
+    }
+  }
+  document.addEventListener('DOMContentLoaded', refreshIcons);
+  window.addEventListener('load', refreshIcons);
+</script>
+</body>
+</html>

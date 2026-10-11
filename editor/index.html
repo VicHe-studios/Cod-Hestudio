@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cod-Hestudio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">
+        <!-- Icono de marca: monitor con HE (el fondo lo pone .brand-mark) -->
+        <svg class="brand-icon" width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="1 1 30 30" aria-hidden="true" style="display:block">
+          <rect x="3.2" y="4.6" width="25.6" height="17" rx="2.6" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+          <path d="M16 21.6 V25.4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M10.8 26.6 H21.2" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+          <g fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="butt">
+            <path d="M9.8 8.4 V17.6 M14.2 8.4 V17.6 M9.8 13 H14.2"/>
+            <path d="M22.8 9.5 H18.4 V16.5 H22.8 M18.4 13 H21.8"/>
+          </g>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1>Cod-Hestudio</h1>
+        <span>Editor de código</span>
+      </div>
+    </div>
+
+    <!-- BARRA HORIZONTAL DE PLUGINS ACTIVOS -->
+    <div class="pb-wrap">
+      <button class="pb-btn pb-prev" type="button" title="Ver plugins anteriores" disabled>
+        <i data-lucide="chevron-left"></i>
+      </button>
+      <div class="plugins-bar" id="pluginsBar"></div>
+      <button class="pb-btn pb-next" type="button" title="Ver más plugins">
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="topbar-actions">
+      <div class="toolbar-plugins" id="toolbarPlugins"></div>
+      <button id="storeBtn" class="btn-icon" title="Tienda de plugins">
+        <i data-lucide="store"></i>
+      </button>
+      <button id="newProjectBtn" class="btn-icon" title="Abrir nuevo proyecto (elegir carpeta)" disabled>
+        <i data-lucide="briefcase"></i>
+      </button>
+      <button id="themeToggle" class="btn-icon" title="Modo oscuro / claro">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="workspace">
+
+    <!-- SIDEBAR PROYECTOS -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Proyectos</span>
+      </div>
+      <ul id="projectsList" class="projects-list"></ul>
+      <div id="projectsEmpty" class="sidebar-empty">
+        <i data-lucide="folder-open"></i>
+        <p>Aún no tienes proyectos</p>
+        <small>Pulsa el botón <strong>+</strong> arriba para empezar</small>
+      </div>
+    </aside>
+
+    <!-- FILETREE -->
+    <aside class="filetree">
+      <div class="filetree-header">
+        <span class="filetree-title" id="filetreeTitle">Archivos</span>
+      </div>
+      <ul id="filetreeList" class="filetree-list"></ul>
+      <div id="filetreeEmpty" class="sidebar-empty">
+        <i data-lucide="files"></i>
+        <p>Sin proyecto abierto</p>
+      </div>
+    </aside>
+
+    <!-- EDITOR -->
+    <main class="editor-area">
+      <div id="welcome" class="welcome">
+        <i data-lucide="code-2"></i>
+        <h2>Bienvenido a Cod-Hestudio</h2>
+        <p>Crea un proyecto con el botón <strong>+</strong> y elige una carpeta de tu PC.</p>
+      </div>
+
+      <div id="editorWrap">
+        <div id="tabsBar" class="tabs-bar"></div>
+        <div id="monacoContainer"></div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- STATUS BAR -->
+  <footer class="statusbar">
+    <div class="statusbar-info">
+      <span id="statusText">Listo</span>
+      <span id="statusFile" class="status-file"></span>
+      <div id="statusbarPlugins" class="statusbar-plugins"></div>
+    </div>
+    <div class="statusbar-actions">
+      <button id="saveBtn" class="statusbar-btn" title="Guardar archivo actual (Ctrl+S)" disabled>
+        <i data-lucide="save"></i>
+        <span class="statusbar-btn-label">Guardar</span>
+      </button>
+      <button id="saveAllBtn" class="statusbar-btn" title="Guardar todos los archivos con cambios (Ctrl+Shift+S)" disabled>
+        <i data-lucide="save-all"></i>
+        <span class="statusbar-btn-label">Guardar todo</span>
+      </button>
+    </div>
+  </footer>
+</div>
+
+<!-- POPOVER MINI DE PLUGIN -->
+<div class="plugin-popover" id="pluginPopover">
+  <div class="plugin-popover-icon"><i data-lucide="puzzle" id="pluginPopIcon"></i></div>
+  <div class="plugin-popover-body">
+    <div class="plugin-popover-name" id="pluginPopName">Plugin</div>
+    <div class="plugin-popover-desc" id="pluginPopDesc"></div>
+  </div>
+  <button class="plugin-popover-disable" id="pluginPopDisable" type="button" title="Desactivar plugin">
+    <i data-lucide="power-off"></i>
+  </button>
+</div>
+
+<!-- MODAL TIENDA DE PLUGINS -->
+<div class="modal hidden" id="storeModal">
+  <div class="modal-content store-modal">
+    <button class="modal-close" id="storeCloseBtn" type="button" title="Cerrar">
+      <i data-lucide="x"></i>
+    </button>
+
+    <div class="store-header">
+      <div class="store-header-icon"><i data-lucide="store"></i></div>
+      <div>
+        <h2>Tienda de plugins</h2>
+        <p class="modal-desc">Activa o desactiva plugins. Se cargan desde la carpeta <code>plugins/</code> vía <code>jsplugins.js</code>.</p>
+      </div>
+    </div>
+
+    <div class="store-grid" id="storeGrid"></div>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="storeDoneBtn" type="button">Hecho</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PROMPT (reutilizable por plugins) -->
+<div class="modal hidden" id="promptModal">
+  <div class="modal-content">
+    <h2 id="promptTitle">Nombre</h2>
+    <p class="modal-desc" id="promptDesc"></p>
+    <input type="text" id="promptInput" placeholder="" autocomplete="off" spellcheck="false">
+    <div class="modal-actions">
+      <button id="promptCancel" class="btn btn-secondary" type="button">Cancelar</button>
+      <button id="promptOk" class="btn btn-primary" type="button">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NUEVO PROYECTO -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Nuevo proyecto</h2>
+    <p class="modal-desc">Se leerá la carpeta que elijas. Nada se sube a internet.</p>
+
+    <label for="projectName">Nombre</label>
+    <input type="text" id="projectName" placeholder="Mi proyecto" maxlength="60" autocomplete="off">
+
+    <label>Icono</label>
+    <div id="iconPicker" class="icon-picker"></div>
+
+    <div class="modal-actions">
+      <button id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+      <button id="createBtn" class="btn btn-primary">Crear proyecto</button>
+    </div>
+  </div>
+</div>
+
+<!-- CDNs -->
+<script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+<!-- JsPlugins loader -->
+<script src="jsplugins.js"></script>
+
+<!-- Motor del editor -->
+<script src="script.js"></script>
+
+<!-- Navegación de la barra de plugins activos: fichas completas, flechas dentro de la cápsula -->
+<script>
+(function () {
+  const bar = document.getElementById('pluginsBar');
+  const wrap = bar.parentElement;
+  const prev = wrap.querySelector('.pb-prev');
+  const next = wrap.querySelector('.pb-next');
+  let step = 0; // distancia entre una ficha y la siguiente
+
+  function update() {
+    const over = wrap.classList.contains('overflowing');
+    const max = bar.scrollWidth - bar.clientWidth;
+    prev.disabled = !over || bar.scrollLeft <= 1;
+    next.disabled = !over || bar.scrollLeft >= max - 1;
+  }
+
+  function fit() {
+    // Estado base: sin flechas y la barra ocupa todo el espacio
+    wrap.classList.remove('overflowing');
+    bar.style.flex = '';
+    bar.style.width = '';
+    bar.style.columnGap = '';
+
+    const items = [...bar.children];
+    if (items.length === 0) { step = 0; bar.scrollLeft = 0; return update(); }
+
+    const cs = getComputedStyle(bar);
+    const gap = parseFloat(cs.columnGap) || 4;
+    // Las fichas tienen un ancho mínimo de 30px (ver style.css)
+    const itemW = parseFloat(getComputedStyle(items[0]).minWidth) || 30;
+    const m = items.length;
+
+    if (m * itemW + (m - 1) * gap <= bar.clientWidth + 1) {
+      step = 0; bar.scrollLeft = 0; return update();
+    }
+
+    // Hay que recortar: aparecen las flechas dentro de la cápsula
+    wrap.classList.add('overflowing');
+    const avail = bar.clientWidth;
+    const n = Math.max(1, Math.floor((avail + gap) / (itemW + gap)));
+
+    let gapX = gap;
+    let width = n * itemW + (n - 1) * gap;
+    if (n > 1) {
+      // Reparte el espacio sobrante entre las fichas visibles
+      gapX = gap + (avail - width) / (n - 1);
+      width = avail;
+    }
+    bar.style.flex = '0 0 auto';
+    bar.style.width = width + 'px';
+    bar.style.columnGap = gapX + 'px';
+    step = itemW + gapX;
+
+    // Siempre alineado a fichas completas
+    bar.scrollLeft = Math.round(bar.scrollLeft / step) * step;
+    update();
+  }
+
+  prev.addEventListener('click', () => {
+    bar.scrollTo({ left: Math.max(0, bar.scrollLeft - step), behavior: 'smooth' });
+  });
+  next.addEventListener('click', () => {
+    const max = bar.scrollWidth - bar.clientWidth;
+    bar.scrollTo({ left: Math.min(max, bar.scrollLeft + step), behavior: 'smooth' });
+  });
+
+  bar.addEventListener('scroll', update, { passive: true });
+  new MutationObserver(fit).observe(bar, { childList: true });
+  new ResizeObserver(fit).observe(wrap);
+  fit();
+})();
+</script>
+<!-- Avisos de estado: cajita fija al fondo de la columna PROYECTOS -->
+<script>
+(function () {
+  const src = document.getElementById('statusText');
+  const sidebar = document.querySelector('.sidebar');
+  const box = document.createElement('div');
+  box.className = 'sidebar-statusbox';
+  box.setAttribute('role', 'status');
+  box.setAttribute('aria-live', 'polite');
+  box.textContent = src.textContent.trim() || 'Listo';
+  sidebar.appendChild(box);
+
+  function show() {
+    const text = src.textContent.trim() || 'Listo';
+    const isError = src.classList.contains('error') || src.classList.contains('is-error');
+    box.textContent = text;
+    box.classList.toggle('error', isError);
+  }
+
+  new MutationObserver(show).observe(src, { childList: true, characterData: true, subtree: true, attributes: true });
+})();
+</script>
+
+</body>
+</html>
