@@ -26,9 +26,7 @@ Es una alternativa más ligera y personalizable a editores más pesados, pensada
 ## Cómo usarlo
 
 1. Abre la página o descarga este repositorio.
-2. Si lo descargas, abre `index.html` desde un servidor local (por ejemplo, con la extensión *Live Server* de VS Code o `python -m http.server`).
-3. Pulsa el botón **+** para crear un proyecto y elige una carpeta de tu PC.
-4. Activa los plugins que quieras desde la **Tienda de plugins** (icono de tienda, arriba a la derecha).
+2. Si lo descargas, abre `index.html` dando doble clik cobre el archivo
 
 ## Estructura del proyecto
 
