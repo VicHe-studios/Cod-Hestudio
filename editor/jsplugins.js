@@ -35,6 +35,8 @@ window.JS_PLUGINS_CONFIG = {
     'TaskList.js',
     'Clocker.js',
     'Ambiental.js',
+    'Starry.js',
+    'Pinner.js',
   ],
 };
 
