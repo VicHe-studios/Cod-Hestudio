@@ -986,6 +986,7 @@ function renderProjects() {
   state.projects.forEach((p) => {
     const li = document.createElement('li');
     li.className = 'project-item' + (state.activeProject?.id === p.id ? ' active' : '');
+    li.dataset.projectId = p.id;
     li.innerHTML = `
       <i data-lucide="${p.icon}"></i>
       <span>${escapeHtml(p.name)}</span>
@@ -1005,6 +1006,7 @@ function renderProjects() {
     projectsList.appendChild(li);
   });
   refreshIcons();
+  emitHook('projects:render', projectsList);
 }
 
 async function removeProject(id) {
